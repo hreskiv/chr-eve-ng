@@ -5,7 +5,7 @@
 if [ $# -eq 1 ]; then
     ver=$1
     if [ -d "/opt/unetlab/addons/qemu/mikrotik-$ver/" ]; then
-	echo "The $ver of RouterOS is already installed"
+	echo "The version $ver of RouterOS is already installed"
 	exit 0
     else
         echo "Creating nessessary directories"
