@@ -1,4 +1,7 @@
 #!/bin/bash
+####################################
+# script is written by Ihor Hreskiv
+####################################
 if [ $# -eq 1 ]; then
     ver=$1
     echo "Creating nessessary directories"
