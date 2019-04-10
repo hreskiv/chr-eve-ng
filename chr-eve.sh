@@ -16,7 +16,7 @@ if [ $# -eq 1 ]; then
     echo "Fixing permitions of the files"
     /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 else
-    echo "You don't put any parameters."
+    echo "Incorrect parameters."
     echo "Usage: sh chr-eve [VERSION]"
     echo "Where [VERSION] is the version of RouterOS"
     echo "Sample: sh cher-eve.sh 3.44.2"
