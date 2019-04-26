@@ -1,2 +1,28 @@
-Repository contain script to adding RouterOS image for eve-ng environment and LAB's for Mikrotik trainings.<br><br>
-<b>Structure of LAB's</b>: name of the file contain first part of name MikroTik course. 
+# MikorTik CHR in eve-ng
+
+Repository contain script to adding RouterOS image for eve-ng environment and LAB's for Mikrotik trainings.
+
+### Prerequisites
+
+You must have already intalled eve-ng without differences virtual or bare metal.
+
+### Installing
+
+Installing script is very simple by using next command
+
+```
+wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
+```
+### Using example
+Use the script with version of RouterOS as parameter
+
+```
+sh chr-eve.sh 6.44.3
+```
+
+### Editing/modifying script
+You can copy and/or modify script without limitations 
+
+```
+wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
+```
