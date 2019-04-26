@@ -26,3 +26,7 @@ You can copy and/or modify script without limitations
 ```
 wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
 ```
+
+## Author
+
+* **Ihor Hreskiv** - *Initial work* - [write e-mail](mailto:support@itechcloud.pl)
