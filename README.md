@@ -1,4 +1,4 @@
-# MikorTik CHR in eve-ng
+# MikroTik CHR in eve-ng
 
 Repository contain script to adding RouterOS image for eve-ng environment and LAB's for Mikrotik trainings.
 
