@@ -8,7 +8,7 @@ You must have already intalled eve-ng without differences virtual or bare metal.
 
 ### Installing
 
-Installing script is very simple by using next command
+Installing script is simple by using next command
 
 ```
 wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
