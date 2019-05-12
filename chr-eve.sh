@@ -1,7 +1,7 @@
 #!/bin/bash
 ####################################
 # script is written by Ihor Hreskiv
-# version 2.1
+# version 2.2
 ####################################
 if [ $# -eq 1 ]; then
     ver=$1
@@ -25,5 +25,5 @@ else
     echo "Incorrect parameters."
     echo "Usage: sh chr-eve [VERSION]"
     echo "Where [VERSION] is the version of RouterOS"
-    echo "Sample: sh cher-eve.sh 3.44.2"
+    echo "Sample: sh cher-eve.sh 6.44.3"
 fi
