@@ -29,4 +29,4 @@ wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
 
 ## Author
 
-* **Ihor Hreskiv** - *Initial work* - [write e-mail](mailto:support@itechcloud.pl)
+* **Ihor Hreskiv** - *Initial work* - [write e-mail](mailto:ihor@mwtc.pl)
