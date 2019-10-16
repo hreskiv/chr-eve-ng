@@ -1,4 +1,4 @@
-
+#!/bin/bash
 curl http://download2.mikrotik.com/routeros/6.40.9/chr-6.40.9.img.zip --output chr.img.zip  && \
 yum install unzip -y && \
 gunzip -c chr.img.zip > chr.img  && \
