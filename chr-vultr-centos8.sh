@@ -13,7 +13,7 @@ echo "/ip address add address=$ADDRESS interface=[/interface ethernet find where
 /ip service disable www
 /ip service disable api
 /ip service disable api-ssl
-/user set 0 password=password2019
+/user set 0 password=pass2019
 /system package update install
  " > /mnt/rw/autorun.scr && \
 umount /mnt && \
