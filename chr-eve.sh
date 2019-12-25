@@ -1,7 +1,7 @@
 #!/bin/bash
 ####################################
 # script is written by Ihor Hreskiv
-# version 2.4
+# version 2.4.1
 ####################################
 if [ $# -eq 1 ]; then
     ver=$1
@@ -12,7 +12,7 @@ if [ $# -eq 1 ]; then
           exit 0
           ;;
       list)
-          ls -la /opt/unetlab/addons/qemu
+          ls -l /opt/unetlab/addons/qemu | awk '{print $9}'
           exit 0
           ;;
       *)
