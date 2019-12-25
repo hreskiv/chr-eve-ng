@@ -12,6 +12,7 @@ if [ $# -eq 1 ]; then
           exit 0
           ;;
       list)
+          echo "List of installed QEMU templates"          
           ls -l /opt/unetlab/addons/qemu | awk '{print $9}'
           exit 0
           ;;
