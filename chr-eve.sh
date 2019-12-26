@@ -12,7 +12,7 @@ if [ $# -eq 1 ]; then
           exit 0
           ;;
       list)
-          echo "List of installed QEMU templates"          
+          echo "List of installed QEMU templates"
           ls -l /opt/unetlab/addons/qemu | awk '{print $9}'
           exit 0
           ;;
@@ -41,5 +41,5 @@ else
     echo "Where [VERSION] is the version of RouterOS"
     echo "fix - fix the permitions of files"
     echo "list - list of installed qemu images"
-    echo "Sample: sh cher-eve.sh 6.44.3"
+    echo "Sample: sh cher-eve.sh 6.46.1"
 fi
