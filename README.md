@@ -17,8 +17,9 @@ wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
 Use the script with version of RouterOS as parameter
 
 ```
-sh chr-eve.sh 6.44.3
+sh chr-eve.sh 6.46.5
 ```
+
 
 ## Editing/modifying script
 You can copy and/or modify script without limitations 

@@ -1,7 +1,7 @@
 #!/bin/bash
 ####################################
 # script is written by Ihor Hreskiv
-# version 2.4.1
+# version 2.4.2
 ####################################
 if [ $# -eq 1 ]; then
     ver=$1
@@ -37,9 +37,9 @@ if [ $# -eq 1 ]; then
     esac
 else
     echo "Incorrect parameters."
-    echo "Usage: sh chr-eve [VERSION] | fix | list"
+    echo "Usage: sh chr-eve [VERSION] | [fix] | [list]"
     echo "Where [VERSION] is the version of RouterOS"
     echo "fix - fix the permitions of files"
     echo "list - list of installed qemu images"
-    echo "Sample: sh cher-eve.sh 6.46.1"
+    echo "Sample: sh cher-eve.sh 6.46.5"
 fi
