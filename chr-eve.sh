@@ -41,5 +41,5 @@ else
     echo "Where [VERSION] is the version of RouterOS"
     echo "fix - fix the permitions of files"
     echo "list - list of installed qemu images"
-    echo "Sample: sh cher-eve.sh 6.46.5"
+    echo "Sample: sh chr-eve.sh 6.46.5"
 fi
