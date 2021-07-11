@@ -25,3 +25,4 @@ echo u > /proc/sysrq-trigger && \
 sleep 5 && \
 dd if=chr.img bs=1024 of=/dev/vda && \
 echo s > /proc/sysrq-trigger
+
