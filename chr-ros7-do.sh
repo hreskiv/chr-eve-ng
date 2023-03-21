@@ -10,5 +10,5 @@ echo "sync disk" && \
 echo s > /proc/sysrq-trigger && \
 echo "Wait 5 seconds" && \
 sleep 5 && \
-echo "All ok, I'll reboot the droplet, access to it only with reovery console" && \
+echo "All fine, I'll reboot the droplet, access to it only with recovery console" && \
 echo b > /proc/sysrq-trigger
