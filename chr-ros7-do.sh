@@ -1,5 +1,5 @@
 #########################################
-###### CHR ROS 7.8 on DigitalOcean ######
+###### CHR ROS 7.11.2 on DigitalOcean ######
 #########################################
 #!/bin/bash
 curl https://download.mikrotik.com/routeros/7.11.2/chr-7.11.2.img.zip --output chr.img.zip  && \
