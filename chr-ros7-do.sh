@@ -1,6 +1,6 @@
-#########################################
+############################################
 ###### CHR ROS 7.11.2 on DigitalOcean ######
-#########################################
+############################################
 #!/bin/bash
 curl https://download.mikrotik.com/routeros/7.11.2/chr-7.11.2.img.zip --output chr.img.zip  && \
 gunzip -c chr.img.zip > chr.img  && \
