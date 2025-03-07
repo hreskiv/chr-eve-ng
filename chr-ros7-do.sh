@@ -1,8 +1,8 @@
 ##############################################
-######  CHR ROS 7.16.1 on DigitalOcean  ######
+######  CHR ROS 7.18.1 on DigitalOcean  ######
 ##############################################
 #!/bin/bash
-curl https://download.mikrotik.com/routeros/7.16.1/chr-7.16.1.img.zip --output chr.img.zip  && \
+curl https://download.mikrotik.com/routeros/7.18.1/chr-7.18.1.img.zip --output chr.img.zip  && \
 gunzip -c chr.img.zip > chr.img  && \
 echo u > /proc/sysrq-trigger && \
 dd if=chr.img bs=1024 of=/dev/vda && \
