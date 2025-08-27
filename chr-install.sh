@@ -2,7 +2,7 @@
 # Install MikroTik Cloud Hosted Router (CHR) 7.19.4 onto the current VPS disk.
 # DANGER: This WILL overwrite the whole system disk immediately (no confirmation).
 # Intended for quick deployment of CHR on a new VPS.  
-# Tested on Debian 11/12 and Ubuntu 20.04/22.04.
+# Tested on Debian 11/12 and Ubuntu 25.04/22.04.
 # Author: Ihor Hreskiv
 ###############
 # quick usage: 
