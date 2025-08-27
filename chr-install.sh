@@ -2,13 +2,15 @@
 # Install MikroTik Cloud Hosted Router (CHR) 7.19.4 onto the current VPS disk.
 # DANGER: This WILL overwrite the whole system disk immediately (no confirmation).
 # Intended for quick deployment of CHR on a new VPS.  
-# Tested on Debian 12 and Ubuntu 25.04
+# Tested on Debian 12, Ubuntu 25.04, CentOS 9, Rocky Linux 9.
 # Author: Ihor Hreskiv
-###############
+# Date: 2025-08-27
+# Version: 2.1
+#############################################
 # quick usage: 
 # change password: NEW_PASSWORD='S3cure!Pass' ./chr-install.sh
 # change identity: IDENTITY='chr-cloud' ./chr-install.sh
-###############
+#############################################
 
 
 set -euo pipefail
@@ -16,6 +18,7 @@ set -euo pipefail
 # -------- Fixed config --------
 ROS_VER="7.19.4"
 ROS_ZIP_URL="https://download.mikrotik.com/routeros/${ROS_VER}/chr-${ROS_VER}.img.zip"
+
 
 # Optional env overrides
 NEW_PASSWORD="${NEW_PASSWORD:-changeMeNOW!}"     # pass via env to avoid editing script
@@ -25,6 +28,16 @@ TARGET_DISK="${TARGET_DISK:-}"                   # e.g. /dev/vda (auto-detected 
 WORKDIR="/tmp/chr-inst"
 MNT="/mnt/chr"
 
+# -------- Install wget/unzip if missing --------
+if command -v yum >/dev/null; then
+  yum install -y wget unzip
+elif command -v dnf >/dev/null; then
+  dnf install -y wget unzip
+elif command -v apt-get >/dev/null; then
+  apt-get install -y wget unzip
+fi
+
+
 # -------- Checks --------
 [[ $EUID -eq 0 ]] || { echo "Run as root."; exit 1; }
 
@@ -32,9 +45,8 @@ need_bins=(wget losetup mount umount awk ip dd lsblk findmnt)
 for b in "${need_bins[@]}"; do
   command -v "$b" >/dev/null || { echo "Missing required tool: $b"; exit 1; }
 done
-if ! command -v unzip >/dev/null; then
-  apt-get install -y unzip
-fi
+
+
 # -------- Prep --------
 mkdir -p "$WORKDIR" "$MNT"
 cleanup() {
