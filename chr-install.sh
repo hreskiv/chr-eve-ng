@@ -2,12 +2,12 @@
 # Install MikroTik Cloud Hosted Router (CHR) 7.19.4 onto the current VPS disk.
 # DANGER: This WILL overwrite the whole system disk immediately (no confirmation).
 # Intended for quick deployment of CHR on a new VPS.  
-# Tested on Debian 11/12 and Ubuntu 25.04/22.04.
+# Tested on Debian 12 and Ubuntu 25.04
 # Author: Ihor Hreskiv
 ###############
 # quick usage: 
 # change password: NEW_PASSWORD='S3cure!Pass' ./chr-install.sh
-# change identity: IDENTITY='chr-prod' ./chr-install.sh
+# change identity: IDENTITY='chr-cloud' ./chr-install.sh
 ###############
 
 
@@ -125,10 +125,19 @@ esac
 
 [[ -b "$TARGET_DISK" ]] || { echo "Target disk not a block device: $TARGET_DISK"; exit 1; }
 
-echo "[*] Writing image to ${TARGET_DISK} ..."
+
+
+echo "[*] Flushing and remounting FS read-only..."
+echo u > /proc/sysrq-trigger || true
+sleep 5
+
+echo "[*] Writing CHR image to ${TARGET_DISK} ..."
 dd if="${WORKDIR}/chr.img" of="${TARGET_DISK}" bs=4M iflag=fullblock oflag=direct status=progress
-sync
 
-echo "[*] Rebooting..."
-reboot
+echo "[*] Forcing sync..."
+echo s > /proc/sysrq-trigger || true
 
+echo "[*] Immediate reboot..."
+echo b > /proc/sysrq-trigger || reboot -f
+
+# --- EOF ---
