@@ -33,7 +33,6 @@ for b in "${need_bins[@]}"; do
   command -v "$b" >/dev/null || { echo "Missing required tool: $b"; exit 1; }
 done
 if ! command -v unzip >/dev/null; then
-  apt-get update -y
   apt-get install -y unzip
 fi
 # -------- Prep --------
