@@ -3,7 +3,7 @@ The script `chr-eve.sh` simplifies adding **MikroTik Cloud Hosted Router (CHR)**
 
 ## Features
 - Automatically downloads CHR image from the official MikroTik CDN:
-https://download.mikrotik.com/routeros/<version>/chr-<version>.img.zip
+`https://download.mikrotik.com/routeros/<version>/chr-<version>.img.zip`
 
 (works for stable, long-term, testing, RC builds – e.g. `7.20rc5`).
 - Extracts and converts the image to `qcow2` format as `hda.qcow2`.
@@ -15,9 +15,8 @@ https://download.mikrotik.com/routeros/<version>/chr-<version>.img.zip
 - `remove` — remove a specific version
 
 ## Requirements
-```bash
-bash, curl, unzip, qemu-img
-```
+`bash`, `curl`, `unzip`, `qemu-img`
+
 
 ## Usage
 ### Install
@@ -41,11 +40,9 @@ sudo ./chr-eve.sh remove --name mikrotik-7.19.4
 
 ## Installation path
 ### Images are placed in:
-```bash
-/opt/unetlab/addons/qemu/mikrotik-<version>/hda.qcow2 
-```
+`/opt/unetlab/addons/qemu/mikrotik-<version>/hda.qcow2`
 
-Then in EVE-NG you can add a node of type mikrotik and choose the installed version.
+Then in EVE-NG you can add a node of type MikroTik and choose the installed version.
 
 #### Author: Ihor Hreskiv
 #### Updated: 2025
