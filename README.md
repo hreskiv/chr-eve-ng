@@ -1,33 +1,51 @@
-# MikroTik CHR in eve-ng
+# MikroTik CHR for EVE-NG
+The script `chr-eve.sh` simplifies adding **MikroTik Cloud Hosted Router (CHR)** images into EVE-NG.
 
-Repository contain script to adding RouterOS image for eve-ng environment and LAB's for Mikrotik trainings.
+## Features
+- Automatically downloads CHR image from the official MikroTik CDN:
+https://download.mikrotik.com/routeros/<version>/chr-<version>.img.zip
 
-## Prerequisites
+(works for stable, long-term, testing, RC builds – e.g. `7.20rc5`).
+- Extracts and converts the image to `qcow2` format as `hda.qcow2`.
+- Colored, step-by-step log output.
+- Runs `fixpermissions` automatically.
+- Provides subcommands:
+- `install` — install a new CHR version
+- `list` — list installed CHR versions
+- `remove` — remove a specific version
 
-You must have already intalled eve-ng without differences virtual or bare metal.
-
-## Installing
-
-Installing script is simple by using next command
-
-```
-wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
-```
-## Using example
-Use the script with version of RouterOS as parameter
-
-```
-sh chr-eve.sh 6.46.5
-```
-
-
-## Editing/modifying script
-You can copy and/or modify script without limitations 
-
-```
-wget https://github.com/hreskiv/chr-eve-ng/raw/master/chr-eve.sh
+## Requirements
+```bash
+bash, curl, unzip, qemu-img
 ```
 
-## Author
+## Usage
+### Install
 
-* **Ihor Hreskiv** - *Initial work* - [write e-mail](mailto:ihor@hreskiv.pl)
+```bash
+./chr-eve.sh install --version 7.20
+./chr-eve.sh install --version 7.20rc5
+./chr-eve.sh install --version 7.20 --force     # overwrite if exists
+./chr-eve.sh install --version 7.19.4 --local /tmp/chr-7.19.4.img
+```
+### List installed CHR images
+```bash
+sudo ./chr-eve.sh list
+```
+### Remove a CHR version
+```bash
+sudo ./chr-eve.sh remove --version 7.19.4
+# or by directory name
+sudo ./chr-eve.sh remove --name mikrotik-7.19.4
+```
+
+## Installation path
+### Images are placed in:
+```bash
+/opt/unetlab/addons/qemu/mikrotik-<version>/hda.qcow2 
+```
+
+Then in EVE-NG you can add a node of type mikrotik and choose the installed version.
+
+#### Author: Ihor Hreskiv
+#### Updated: 2025
