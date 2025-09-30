@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 SCRIPT_NAME=$(basename "$0")
-SUBCMD="install"     # default action: install | list | remove
+SUBCMD="install"
 VERSION=""
 NAME=""
 DRY_RUN=false
@@ -38,17 +38,6 @@ ${BOLD}Usage:${RESET}
   $SCRIPT_NAME install --version <x.y[.z][rcN]> [--name <dir-name>] [--local <file>] [--force] [--dry-run]
   $SCRIPT_NAME list
   $SCRIPT_NAME remove --version <x.y[.z][rcN]>   # or --name <dir-name>
-
-${BOLD}Examples:${RESET}
-  $SCRIPT_NAME install --version 7.20
-  $SCRIPT_NAME install --version 7.20rc5 --force
-  $SCRIPT_NAME list
-  $SCRIPT_NAME remove --version 7.19.4
-
-${BOLD}Notes:${RESET}
-  • Automatically downloads: https://download.mikrotik.com/routeros/<ver>/chr-<ver>.img.zip
-  • Installs to: ${EVE_ADDONS_DIR}/mikrotik-<ver>/hda.qcow2
-  • Requires: bash, curl, unzip, qemu-img, root
 EOF
 }
 
@@ -106,16 +95,15 @@ fix_permissions() {
 case "$SUBCMD" in
   list)
     [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE‑NG not detected: $EVE_ADDONS_DIR missing"
-    step "Scanning installed MikroTik images in $EVE_ADDONS_DIR"
+    step "Installed MikroTik CHR images in $EVE_ADDONS_DIR"
     found=false
     while IFS= read -r dir; do
       found=true
       ver=$(basename "$dir" | sed -E 's/^mikrotik-//')
-      size=$(stat -c %s "$dir/hda.qcow2" 2>/dev/null || echo 0)
-      if [[ "$size" -gt 0 ]]; then
-        log "${BOLD}${ver}${RESET} — hda.qcow2 present (${size} bytes)"
+      if [[ -f "$dir/hda.qcow2" ]]; then
+        printf " %s✓%s  %s\n" "$C_GREEN" "$RESET" "$ver"
       else
-        warn "${BOLD}${ver}${RESET} — hda.qcow2 missing"
+        printf " %s✗%s  %s (missing hda.qcow2)\n" "$C_RED" "$RESET" "$ver"
       fi
     done < <(find "$EVE_ADDONS_DIR" -maxdepth 1 -type d -name 'mikrotik-*' | sort)
     $found || warn "No mikrotik-* directories found"
@@ -200,4 +188,3 @@ case "$SUBCMD" in
     usage; exit 1 ;;
 
 esac
-
