@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# chr-eve.sh — Install/List/Remove MikroTik CHR images for EVE‑NG (CE/PRO)
-
+# chr-eve.sh — Install/List/Remove MikroTik CHR images for EVE-NG (CE/PRO)
+# version updated 04-11-2025
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -32,12 +32,12 @@ need()   { command -v "$1" >/dev/null 2>&1 || die "Missing dependency: $1"; }
 
 usage() {
   cat <<EOF
-${BOLD}$SCRIPT_NAME${RESET} — Manage MikroTik CHR images for EVE‑NG (no URL needed)
+${BOLD}$SCRIPT_NAME${RESET} — Manage MikroTik CHR images for EVE-NG (no URL needed)
 
 ${BOLD}Usage:${RESET}
-  $SCRIPT_NAME install --version <x.y[.z][rcN]> [--name <dir-name>] [--local <file>] [--force] [--dry-run]
+  $SCRIPT_NAME install --version <x.y[.z][rcN|betaN]> [--name <dir-name>] [--local <file>] [--force] [--dry-run]
   $SCRIPT_NAME list
-  $SCRIPT_NAME remove --version <x.y[.z][rcN]>   # or --name <dir-name>
+  $SCRIPT_NAME remove --version <x.y[.z][rcN|betaN]>   # or --name <dir-name>
 EOF
 }
 
@@ -94,7 +94,7 @@ fix_permissions() {
 # ---------- Subcommands ----------
 case "$SUBCMD" in
   list)
-    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE‑NG not detected: $EVE_ADDONS_DIR missing"
+    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE-NG not detected: $EVE_ADDONS_DIR missing"
     step "Installed MikroTik CHR images in $EVE_ADDONS_DIR"
     found=false
     while IFS= read -r dir; do
@@ -111,7 +111,7 @@ case "$SUBCMD" in
     ;;
 
   remove)
-    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE‑NG not detected: $EVE_ADDONS_DIR missing"
+    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE-NG not detected: $EVE_ADDONS_DIR missing"
     target_name="${NAME:-${VERSION}}"
     [[ -n "$target_name" ]] || die "Specify --version or --name for remove"
     TARGET_DIR="$EVE_ADDONS_DIR/mikrotik-$target_name"
@@ -125,12 +125,14 @@ case "$SUBCMD" in
 
   install)
     [[ $EUID -eq 0 ]] || die "Run as root (sudo)."
-    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE‑NG not detected: $EVE_ADDONS_DIR missing"
+    [[ -d "$EVE_ADDONS_DIR" ]] || die "EVE-NG not detected: $EVE_ADDONS_DIR missing"
     need qemu-img; need curl; need unzip
 
     [[ -n "$VERSION" ]] || { usage; die "--version is required for install"; }
-    if ! [[ "$VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}(rc[0-9]+)?$ ]]; then
-      die "Version must look like '7.20' or '7.20rc5'"
+
+    # Allow standard, rc, and beta versions like 7.20, 7.20rc5, 7.21beta5
+    if ! [[ "$VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}((rc|beta)[0-9]+)?$ ]]; then
+      die "Version must look like '7.20', '7.20rc5', or '7.21beta5'"
     fi
 
     TARGET_DIR_NAME="mikrotik-${NAME:-$VERSION}"
@@ -181,7 +183,7 @@ case "$SUBCMD" in
 
     fix_permissions
     log "Done. Installed: $TARGET_DISK"
-    log "Add node in EVE‑NG: type 'mikrotik' -> $TARGET_DIR_NAME"
+    log "Add node in EVE-NG: type 'mikrotik' -> $TARGET_DIR_NAME"
     ;;
 
   *)
